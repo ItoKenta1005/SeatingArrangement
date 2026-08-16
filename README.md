@@ -1,12 +1,13 @@
 # SeatingArrangement
 
-This project solves the seating arrangement problem with `python + pulp (CBC)` and provides a local Streamlit web app.
+This project solves the seating arrangement problem with `python + pulp (CBC)` and provides a local web app.
 
 ## Directory Layout
 
 ```text
 .
 ├─ app.py
+├─ webapp.py
 ├─ docs/
 │  └─ desc.txt
 ├─ input/
@@ -22,6 +23,7 @@ This project solves the seating arrangement problem with `python + pulp (CBC)` a
 │  ├─ solver_core.py
 │  └─ tag_count_preprocess.py
 ├─ requirements.txt
+├─ render.yaml
 └─ README.md
 ```
 
@@ -48,7 +50,7 @@ Solver:
 Web app:
 
 ```powershell
-.\venv\Scripts\python.exe -m streamlit run app.py
+.\venv\Scripts\python.exe -m uvicorn webapp:app --host 0.0.0.0 --port 8000
 ```
 
 ## Output CSVs
@@ -60,12 +62,13 @@ Web app:
 
 ## Web App
 
-- Upload `input.csv` or use `input/input.csv`
+- Upload `input/input.csv` or use the default input file
 - Run the solver from the browser
 - View results and download CSV files
 
 ## Render Deploy
 
 - `render.yaml` is included for a free web service
-- Render build command: `pip install -r requirements.txt`
-- Render start command: `streamlit run app.py --server.address 0.0.0.0 --server.port $PORT`
+- Build command: `pip install -r requirements.txt`
+- Start command: `uvicorn webapp:app --host 0.0.0.0 --port $PORT`
+
